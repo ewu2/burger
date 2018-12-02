@@ -1,0 +1,65 @@
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <img src="https://i.imgur.com/FYH3I1p.png" height="200" class="center-block">
+            <h1 class="text-center title">EAT-DA-BURGER</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-md-6">
+            <div>
+                {{#each burgers}}
+                {{#unless this.devoured}}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="uneaten">
+                            <p class="text-center burger-name">
+                                {{this.burger_name}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden" name="devoured" value="true">
+                                <button type="submit" class="btn btn-outline-light text-center eat-button">Eat it.</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{/unless}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-md-4">
+            {{#each burgers}}
+            {{#if this.devoured}}
+            <div class="eaten">
+                <p class="text-center eaten-name">
+                    {{this.burger_name}}
+                </p>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="create-update-form" action="/" method="POST">
+
+                <div class="form-group">
+                    <p class="text-center form-text">NAME AND MAKE YOUR BURGER!</p>
+                    <input type="text" id="ca" name="name" class="center-block burger_field">
+                </div>
+
+                <button type="submit" class="btn btn-outline-light submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
